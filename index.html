@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Travel Planner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>✈️ Travel Planner</h1>
+    <p>Plan your trips, itineraries, and budgets in one place.</p>
+  </header>
+
+  <main class="container">
+    <!-- Add Trip Form -->
+    <section class="card">
+      <h2>Add New Trip</h2>
+      <form id="tripForm">
+        <div class="form-row">
+          <label>
+            Destination
+            <input type="text" id="destination" required placeholder="e.g. Goa, India" />
+          </label>
+          <label>
+            Start Date
+            <input type="date" id="startDate" required />
+          </label>
+          <label>
+            End Date
+            <input type="date" id="endDate" required />
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            Food Budget (₹)
+            <input type="number" id="foodBudget" min="0" value="0" />
+          </label>
+          <label>
+            Hotel Budget (₹)
+            <input type="number" id="hotelBudget" min="0" value="0" />
+          </label>
+          <label>
+            Travel Budget (₹)
+            <input type="number" id="travelBudget" min="0" value="0" />
+          </label>
+          <label>
+            Other Budget (₹)
+            <input type="number" id="otherBudget" min="0" value="0" />
+          </label>
+        </div>
+
+        <button type="submit">Create Trip</button>
+      </form>
+    </section>
+
+    <!-- Trips List -->
+    <section class="card">
+      <h2>Your Trips</h2>
+      <div id="tripsList" class="trips-grid">
+        <!-- Trip cards will be injected here -->
+      </div>
+    </section>
+
+    <!-- Trip Detail Modal -->
+    <div id="tripModal" class="modal hidden">
+      <div class="modal-content">
+        <button class="close-btn" id="closeModal">&times;</button>
+        <h2 id="modalTitle">Trip Details</h2>
+
+        <div class="trip-summary">
+          <p><strong>Destination:</strong> <span id="modalDestination"></span></p>
+          <p><strong>Dates:</strong> <span id="modalDates"></span></p>
+          <p><strong>Total Budget:</strong> ₹<span id="modalTotalBudget"></span></p>
+        </div>
+
+        <h3>Itinerary</h3>
+        <div id="itineraryContainer">
+          <!-- Days will be injected here -->
+        </div>
+
+        <h3>Add Activity</h3>
+        <form id="activityForm" class="activity-form">
+          <input type="hidden" id="currentTripId" />
+          <input type="hidden" id="currentDayIndex" value="0" />
+          <div class="form-row">
+            <label>
+              Day
+              <select id="daySelect">
+                <!-- options injected via JS -->
+              </select>
+            </label>
+            <label>
+              Time
+              <input type="time" id="activityTime" required />
+            </label>
+          </div>
+          <label>
+            Activity
+            <input type="text" id="activityName" required placeholder="e.g. Visit Fort, Beach, Temple" />
+          </label>
+          <label>
+            Estimated Cost (₹)
+            <input type="number" id="activityCost" min="0" value="0" />
+          </label>
+          <button type="submit">Add Activity</button>
+        </form>
+
+        <div class="budget-summary">
+          <h3>Budget Summary</h3>
+          <p>Food: ₹<span id="sumFood"></span></p>
+          <p>Hotel: ₹<span id="sumHotel"></span></p>
+          <p>Travel: ₹<span id="sumTravel"></span></p>
+          <p>Other: ₹<span id="sumOther"></span></p>
+          <p><strong>Total Planned:</strong> ₹<span id="sumTotal"></span></p>
+          <p><strong>Activities Cost:</strong> ₹<span id="sumActivities"></span></p>
+          <p><strong>Remaining:</strong> ₹<span id="sumRemaining"></span></p>
+        </div>
+
+        <button id="deleteTripBtn" class="danger-btn">Delete Trip</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
